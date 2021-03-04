@@ -1,0 +1,40 @@
+{
+  "cwd": "G:\\my\\com\\prokey\\mobile\\prokey-app",
+  "type": [
+    "cordova"
+  ],
+  "name": "Prokey",
+  "framework": "core",
+  "template": "tabs",
+  "bundler": "webpack",
+  "cssPreProcessor": false,
+  "theming": {
+    "customColor": false,
+    "color": "#007aff",
+    "darkTheme": false,
+    "iconFonts": true,
+    "fillBars": false
+  },
+  "customBuild": false,
+  "webpack": {
+    "developmentSourceMap": true,
+    "productionSourceMap": true,
+    "hashAssets": false,
+    "preserveAssetsPaths": false,
+    "inlineAssets": true
+  },
+  "pkg": "com.prokey.prokey",
+  "cordova": {
+    "folder": "cordova",
+    "platforms": [
+      "ios",
+      "android",
+      "electron"
+    ],
+    "plugins": [
+      "cordova-plugin-statusbar",
+      "cordova-plugin-keyboard",
+      "cordova-plugin-splashscreen"
+    ]
+  }
+}

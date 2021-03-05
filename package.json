@@ -31,7 +31,8 @@
     "framework7": "^6.0.11",
     "framework7-icons": "^4.0.2",
     "skeleton-elements": "^3.3.0",
-    "swiper": "^6.4.15"
+    "swiper": "^6.4.15",
+    "template7": "^1.4.2"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",

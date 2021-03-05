@@ -58,6 +58,6 @@ var app = new Framework7({
 setTimeout(function(){
   $$('.splashScreen').addClass('animate__animated animate__fadeOut');
   setTimeout(function(){
-      $$('.splashScreen').hide();
+      $$('.splashScreen').hide();      
   },1000);
 },2000);

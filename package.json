@@ -55,7 +55,7 @@
     "ora": "^5.3.0",
     "postcss-loader": "^5.0.0",
     "postcss-preset-env": "^6.7.0",
-    "@prokey-io/webcore": "^0.1.0",
+    "@prokey-io/webcore": "0.1.5",
     "rimraf": "^3.0.2",
     "style-loader": "^2.0.0",
     "terser-webpack-plugin": "^5.1.1",

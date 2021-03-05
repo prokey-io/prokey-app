@@ -3,6 +3,7 @@ import { createStore } from 'framework7';
 
 const store = createStore({
   state: {
+    device: null,
     products: [
       {
         id: '1',
@@ -22,6 +23,9 @@ const store = createStore({
     ]
   },
   getters: {
+    device({ state }) {
+      return state.device;
+    },
     products({ state }) {
       return state.products;
     }

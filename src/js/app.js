@@ -20,6 +20,9 @@ import store from './store.js';
 // Import main app component
 import App from '../app.f7.html';
 
+// Import prokey device
+import Device from '@prokey-io/webcore';
+
 var device = getDevice();
 var app = new Framework7({
   name: 'Prokey', // App name
@@ -45,6 +48,7 @@ var app = new Framework7({
   },
   on: {
     init: function () {
+      store.device = new Device.Device();
       var f7 = this;
       if (f7.device.cordova) {
         // Init cordova APIs (see cordova-app.js)

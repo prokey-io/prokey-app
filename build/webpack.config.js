@@ -199,7 +199,16 @@ module.exports = {
           from: resolvePath('src/static'),
           to: resolvePath(isCordova ? 'cordova/www/static' : 'www/static'),
         },
-
+        {
+          noErrorOnMissing: false,
+          from: resolvePath('node_modules/@prokey-io/webcore/protob/combined.proto.txt'),
+          to: resolvePath(isCordova ? 'cordova/www/assets/data/protob/combined.proto.txt' : 'www/assets/data/protob/combined.proto.txt'),
+        },
+        {
+          noErrorOnMissing: false,
+          from: resolvePath('node_modules/@prokey-io/webcore/protob/google/protobuf/descriptor.proto.txt'),
+          to: resolvePath(isCordova ? 'cordova/www/assets/data/protob/google/protobuf/descriptor.proto.txt' : 'www/assets/data/protob/google/protobuf/descriptor.proto.txt'),
+        },
       ],
     }),
 

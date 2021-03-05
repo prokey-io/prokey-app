@@ -94,12 +94,34 @@
     </div>
 
     <!-- Content component will load based on the url -->
-    <div id="main-view" class="view view-main view-init safe-areas" data-url="/connect/">     
+    <div id="main-view" class="view view-main view-init safe-areas" data-url="/connect/">
     </div>
   </div>
 </template>
 <script>
-  export default (props, { $f7, $update }) => {
+  export default (props, { $f7, $update, $store, $f7ready }) => {
+
+    $f7ready(() => {
+      $store.device.OnButtonRequest.subscribe(OnProkeyButtonRequest);
+      $store.device.OnFailure.subscribe(OnProkeyFailure);
+      $store.device.OnDisconnect.subscribe(OnProkeyDisconnect);
+    });
+
+    // **********************************
+    // ProKey Events
+    // **********************************
+    const OnProkeyButtonRequest = (buttonRequestType) => {
+      this.message = 'Please check your device and continue, the request is -> ' + buttonRequestType;
+      return true;
+    }
+
+    const OnProkeyFailure = (failureType) => {
+      this.error = ' Command failed, the failureType is -> ' + failureType;
+    }
+
+    const OnProkeyDisconnect = () => {
+      this.message = "Prokey Disconnected";
+    }
 
     return $render;
   }

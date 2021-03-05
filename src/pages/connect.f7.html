@@ -7,7 +7,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                 </p>
             </div>
-            <a href="/about/" class="col button button-large button-fill">Check Device</a>
+            <a @click="" class="col button button-large button-fill">Check Device</a>
         </div>
     </div>
 </template>
@@ -15,7 +15,12 @@
 <script>
     import connect_image from '../assets/img/connect.png';
 
-    export default (props) => {
+    export default (props, { $store }) => {
+
+        const connect_click = async () => {
+            let res = await $store.device.TransportConnect();
+            console.log(res);
+        }
 
         return $render;
     }

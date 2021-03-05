@@ -39,7 +39,7 @@ module.exports = {
     },
 
   },
-  devtool: env === 'production' ? 'source-map' : 'eval',
+  devtool: env === 'production' ? 'source-map' : 'eval-cheap-module-source-map',
   devServer: {
     hot: true,
     open: true,

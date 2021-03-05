@@ -93,9 +93,24 @@
       </div>
     </div>
 
+    <div class="view view-main view-init safe-areas">
+      <div class="page" data-name="connect">
+        <div class="page-content text-center">
+          <img src="${connect_image}" width="280px" height="280px" />
+          <div class="connect-content">
+            <h2>Connect Your Prokey</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            </p>
+          </div>
+          <a href="/pin/" class="col button button-large button-fill">Check Device</a>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
+  import connect_image from './assets/img/connect.png';
+
   export default (props, { $f7, $update }) => {
     // Login screen demo data
     let username = '';

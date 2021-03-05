@@ -112,16 +112,16 @@
     // ProKey Events
     // **********************************
     const OnProkeyButtonRequest = (buttonRequestType) => {
-      this.message = 'Please check your device and continue, the request is -> ' + buttonRequestType;
+      console.debug('Please check your device and continue, the request is -> ' + buttonRequestType);
       return true;
     }
 
     const OnProkeyFailure = (failureType) => {
-      this.error = ' Command failed, the failureType is -> ' + failureType;
+      console.error(' Command failed, the failureType is -> ' + failureType);
     }
 
     const OnProkeyDisconnect = () => {
-      this.message = "Prokey Disconnected";
+      console.debug("Prokey Disconnected");
     }
 
     return $render;

@@ -13,7 +13,7 @@ import NotFoundPage from '../pages/404.f7.html';
 
 var routes = [
   {
-    path: '/',
+    path: '/home/',
     component: HomePage,
   },
   {

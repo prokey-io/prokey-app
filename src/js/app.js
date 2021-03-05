@@ -20,10 +20,10 @@ import store from './store.js';
 // Import main app component
 import App from '../app.f7.html';
 
-// Import prokey device
-import Device from '@prokey-io/webcore';
+import ProkeyDevice from '@prokey-io/webcore'
 
 var device = getDevice();
+
 var app = new Framework7({
   name: 'Prokey', // App name
   theme: 'auto', // Automatic theme detection
@@ -48,7 +48,7 @@ var app = new Framework7({
   },
   on: {
     init: function () {
-      this.store.dispatch('setDevice', new Device.Device());
+      this.store.dispatch('setDevice', new ProkeyDevice.Device());
       console.debug(this.store.getters.device);
       var f7 = this;
       if (f7.device.cordova) {

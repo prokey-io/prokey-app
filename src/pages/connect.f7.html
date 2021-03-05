@@ -14,13 +14,20 @@
 
 <script>
     import connect_image from '../assets/img/connect.png';
+    import my_app from '../js/app.js';
 
-    export default (props, { $store }) => {
+    export default (props, { $store, $f7 }) => {
+
+        console.debug($f7.views);
 
         const connect_click = async () => {
             console.debug($store.getters.device.value);
             let res = await $store.getters.device.value.TransportConnect();
-            console.log(res);
+            console.debug(res);
+            if (res.success === true)
+            {
+                $f7.views.main.router.navigate('/about/');
+            }
         }
 
         return $render;

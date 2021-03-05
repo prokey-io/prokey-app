@@ -7,7 +7,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                 </p>
             </div>
-            <a @click="" class="col button button-large button-fill">Check Device</a>
+            <a @click=${connect_click} class="col button button-large button-fill">Check Device</a>
         </div>
     </div>
 </template>
@@ -18,7 +18,8 @@
     export default (props, { $store }) => {
 
         const connect_click = async () => {
-            let res = await $store.device.TransportConnect();
+            console.debug($store.getters.device.value);
+            let res = await $store.getters.device.value.TransportConnect();
             console.log(res);
         }
 

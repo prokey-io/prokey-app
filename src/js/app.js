@@ -48,7 +48,8 @@ var app = new Framework7({
   },
   on: {
     init: function () {
-      store.device = new Device.Device();
+      this.store.dispatch('setDevice', new Device.Device());
+      console.debug(this.store.getters.device);
       var f7 = this;
       if (f7.device.cordova) {
         // Init cordova APIs (see cordova-app.js)

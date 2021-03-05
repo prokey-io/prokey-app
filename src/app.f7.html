@@ -102,9 +102,10 @@
   export default (props, { $f7, $update, $store, $f7ready }) => {
 
     $f7ready(() => {
-      $store.device.OnButtonRequest.subscribe(OnProkeyButtonRequest);
-      $store.device.OnFailure.subscribe(OnProkeyFailure);
-      $store.device.OnDisconnect.subscribe(OnProkeyDisconnect);
+      console.debug($store.getters.device);
+      $store.getters.device.value.AddOnButtonRequestCallBack(OnProkeyButtonRequest);
+      $store.getters.device.value.AddOnFailureCallBack(OnProkeyFailure);
+      $store.getters.device.value.AddOnDeviceDisconnectCallBack(OnProkeyDisconnect);
     });
 
     // **********************************

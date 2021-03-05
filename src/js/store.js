@@ -34,6 +34,9 @@ const store = createStore({
     addProduct({ state }, product) {
       state.products = [...state.products, product];
     },
+    setDevice({ state }, device) {
+      state.device = device;
+    }
   },
 })
 export default store;

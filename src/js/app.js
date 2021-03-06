@@ -65,4 +65,4 @@ setTimeout(function(){
   setTimeout(function(){
       $$('.splashScreen').hide();      
   },1000);
-},2000);
+},200);

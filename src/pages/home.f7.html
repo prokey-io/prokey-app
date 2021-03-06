@@ -1,97 +1,64 @@
 <template>
-  <div class="page" data-name="home">
-    <!-- Top Navbar -->
-    <div class="navbar navbar-large">
-      <div class="navbar-bg"></div>
-      <div class="navbar-inner">
-        <div class="left">
-          <a href="#" class="link icon-only panel-open" data-panel="left">
-            <i class="icon f7-icons if-not-md">menu</i>
-            <i class="icon material-icons if-md">menu</i>
-          </a>
+    <div class="page" data-name="home">
+        <!-- Tabbar for switching views-tabs -->
+        <div class="toolbar tabbar toolbar-bottom tabbar-labels">
+            <div class="toolbar-inner">
+                <a href="#view-dashboard" class="tab-link tab-link-active">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22.241" height="19.461" viewBox="0 0 22.241 19.461">
+                        <path id="th-large-solid"
+                            d="M12.858,32H21.2a1.043,1.043,0,0,1,1.043,1.043v6.95A1.043,1.043,0,0,1,21.2,41.036h-8.34a1.043,1.043,0,0,1-1.043-1.043v-6.95A1.043,1.043,0,0,1,12.858,32ZM9.383,32H1.043A1.043,1.043,0,0,0,0,33.043v6.95a1.043,1.043,0,0,0,1.043,1.043h8.34a1.043,1.043,0,0,0,1.043-1.043v-6.95A1.043,1.043,0,0,0,9.383,32ZM0,43.468v6.95a1.043,1.043,0,0,0,1.043,1.043h8.34a1.043,1.043,0,0,0,1.043-1.043v-6.95a1.043,1.043,0,0,0-1.043-1.043H1.043A1.043,1.043,0,0,0,0,43.468Zm12.858,7.993H21.2a1.043,1.043,0,0,0,1.043-1.043v-6.95A1.043,1.043,0,0,0,21.2,42.426h-8.34a1.043,1.043,0,0,0-1.043,1.043v6.95A1.043,1.043,0,0,0,12.858,51.461Z"
+                            transform="translate(0 -32)" fill="#cbcbcb" />
+                    </svg>
+                    <span class="tabbar-label">Dashboard</span>
+                </a>
+                <a href="#view-assets" class="tab-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="21.23" height="19.461" viewBox="0 0 21.23 19.461">
+                        <path id="coins-solid"
+                            d="M0,18.562v2.361c0,1.952,4.755,3.538,10.615,3.538S21.23,22.874,21.23,20.923V18.562c-2.283,1.609-6.458,2.361-10.615,2.361S2.283,20.171,0,18.562Zm0-5.8v2.853c0,1.952,4.755,3.538,10.615,3.538S21.23,17.567,21.23,15.615V12.762c-2.283,1.88-6.463,2.853-10.615,2.853S2.283,14.642,0,12.762ZM10.615,5C4.755,5,0,6.979,0,9.423s4.755,4.423,10.615,4.423S21.23,11.867,21.23,9.423,16.476,5,10.615,5Z"
+                            transform="translate(0 -5)" fill="#cbcbcb" />
+                    </svg>
+                    <span class="tabbar-label">Assets</span>
+                </a>
+                <a href="#view-send" class="tab-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19.662" height="19.659" viewBox="0 0 19.662 19.659">
+                        <path id="upload-solid"
+                            d="M11.367,14.819H8.3a.919.919,0,0,1-.922-.922V7.445H4.005a.767.767,0,0,1-.541-1.31L9.305.291a.744.744,0,0,1,1.048,0L16.2,6.136a.767.767,0,0,1-.541,1.31H12.289V13.9A.919.919,0,0,1,11.367,14.819Zm8.3-.307v4.3a.919.919,0,0,1-.922.922H.922A.919.919,0,0,1,0,18.813v-4.3a.919.919,0,0,1,.922-.922H6.144V13.9A2.152,2.152,0,0,0,8.3,16.048h3.072A2.152,2.152,0,0,0,13.518,13.9V13.59h5.223A.919.919,0,0,1,19.662,14.512ZM14.9,17.891a.768.768,0,1,0-.768.768A.77.77,0,0,0,14.9,17.891Zm2.458,0a.768.768,0,1,0-.768.768A.77.77,0,0,0,17.358,17.891Z"
+                            transform="translate(0 -0.075)" fill="#cbcbcb" />
+                    </svg>
+                    <span class="tabbar-label">Send</span>
+                </a>
+                <a href="#view-receive" class="tab-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19.461" height="19.461" viewBox="0 0 19.461 19.461">
+                        <path id="download-solid"
+                            d="M8.21,0h3.041a.91.91,0,0,1,.912.912V7.3H15.5a.759.759,0,0,1,.536,1.3l-5.781,5.785a.736.736,0,0,1-1.038,0L3.425,8.594a.759.759,0,0,1,.536-1.3H7.3V.912A.91.91,0,0,1,8.21,0ZM19.461,14.292v4.257a.91.91,0,0,1-.912.912H.912A.91.91,0,0,1,0,18.549V14.292a.91.91,0,0,1,.912-.912H6.488l1.862,1.862a1.948,1.948,0,0,0,2.76,0l1.862-1.862h5.576A.91.91,0,0,1,19.461,14.292Zm-4.713,3.345a.76.76,0,1,0-.76.76A.762.762,0,0,0,14.748,17.637Zm2.433,0a.76.76,0,1,0-.76.76A.762.762,0,0,0,17.181,17.637Z"
+                            fill="#cbcbcb" />
+                    </svg>
+                    <span class="tabbar-label">Receive</span>
+                </a>
+            </div>
         </div>
-        <div class="title sliding">Prokey</div>
-        <div class="right">
-          <a href="#" class="link icon-only panel-open" data-panel="right">
-            <i class="icon f7-icons if-not-md">menu</i>
-            <i class="icon material-icons if-md">menu</i>
-          </a>
+
+        <div class="page-content">
+            <!-- Your main view/tab, should have "view-main" class. It also has "tab-active" class -->
+            <div id="view-dashboard" class="view tab tab-active">
+            </div>
         </div>
-        <div class="title-large">
-          <div class="title-large-text">Prokey</div>
-        </div>
-      </div>
     </div>
-
-    <!-- Scrollable page content-->
-    <div class="page-content">
-      <div class="block block-strong">
-        <p>This is an example of tabs-layout application. The main point of such tabbed layout is that each tab contains independent view with its own routing and navigation.</p>
-
-        <p>Each tab/view may have different layout, different navbar type (dynamic, fixed or static) or without navbar like this tab.</p>
-      </div>
-      <div class="block-title">Navigation</div>
-      <div class="list">
-        <ul>
-          <li>
-            <a href="/about/" class="item-content item-link">
-              <div class="item-inner">
-                <div class="item-title">About</div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/form/" class="item-content item-link">
-              <div class="item-inner">
-                <div class="item-title">Form</div>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="block-title">Modals</div>
-      <div class="block block-strong">
-        <div class="row">
-          <div class="col-50">
-            <a href="#" class="button button-raised button-fill popup-open" data-popup="#my-popup">Popup</a>
-          </div>
-          <div class="col-50">
-            <a href="#" class="button button-raised button-fill login-screen-open" data-login-screen="#my-login-screen">Login Screen</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-title">Panels</div>
-      <div class="block block-strong">
-        <div class="row">
-          <div class="col-50">
-            <a href="#" class="button button-raised button-fill panel-open" data-panel="left">Left Panel</a>
-          </div>
-          <div class="col-50">
-            <a href="#" class="button button-raised button-fill panel-open" data-panel="right">Right Panel</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="list links-list">
-        <ul>
-          <li>
-            <a href="/dynamic-route/blog/45/post/125/?foo=bar#about">Dynamic (Component) Route</a>
-          </li>
-          <li>
-            <a href="/load-something-that-doesnt-exist/">Default Route (404)</a>
-          </li>
-          <li>
-            <a href="/request-and-load/user/123456/">Request Data & Load</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
 </template>
 <script>
-export default () => {
-  return $render;
-}
+    export default (props, { $, $on, $f7 }) => {
+
+        $on('pageInit', (e, page) => {
+            $('#main-view').removeClass('view');
+            $('#main-view').addClass('tabs');
+            $('#main-view').addClass('views');
+            $f7.views.create("#view-dashboard", { url: "/dashboard/", name: "dashboard" });
+        });
+        $on('pageAfterOut', (e, page) => {
+            $('#main-view').addClass('view');
+            $('#main-view').removeClass('tabs');
+            $('#main-view').removeClass('views');
+        });
+        return $render;
+    }
 </script>

@@ -2,6 +2,7 @@
 import HomePage from '../pages/home.f7.html';
 import AboutPage from '../pages/about.f7.html';
 import ConnectPage from '../pages/connect.f7.html';
+import DashboardPage from '../pages/dashboard.f7.html';
 import FormPage from '../pages/form.f7.html';
 import CatalogPage from '../pages/catalog.f7.html';
 import ProductPage from '../pages/product.f7.html';
@@ -23,6 +24,10 @@ var routes = [
   {
     path: '/connect/',
     component: ConnectPage
+  },
+  {
+    path: '/dashboard/',
+    component: DashboardPage,
   },
   {
     path: '/form/',

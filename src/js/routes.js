@@ -1,11 +1,14 @@
 
 import HomePage from '../pages/home.f7.html';
 import AboutPage from '../pages/about.f7.html';
+import AssetsPage from '../pages/assets.f7.html';
 import ConnectPage from '../pages/connect.f7.html';
 import DashboardPage from '../pages/dashboard.f7.html';
 import FormPage from '../pages/form.f7.html';
 import CatalogPage from '../pages/catalog.f7.html';
 import ProductPage from '../pages/product.f7.html';
+import ReceivePage from '../pages/receive.f7.html';
+import SendPage from '../pages/send.f7.html';
 import SettingsPage from '../pages/settings.f7.html';
 
 import DynamicRoutePage from '../pages/dynamic-route.f7.html';
@@ -16,6 +19,29 @@ var routes = [
   {
     path: '/home/',
     component: HomePage,
+    tabs: [
+      {
+        path: '/',
+        id: 'view-dashboard',
+        component: DashboardPage
+      },
+      {
+        path: '/assets/',
+        id: 'view-assets',
+        component: AssetsPage
+      },
+      {
+        path: '/send/',
+        id: 'view-send',
+        component: SendPage
+      },
+      {
+        path: '/receive/',
+        id: 'view-receive',
+        component: ReceivePage
+      }
+
+    ]
   },
   {
     path: '/about/',
@@ -24,10 +50,6 @@ var routes = [
   {
     path: '/connect/',
     component: ConnectPage
-  },
-  {
-    path: '/dashboard/',
-    component: DashboardPage,
   },
   {
     path: '/form/',

@@ -3,7 +3,7 @@
         <!-- Tabbar for switching views-tabs -->
         <div class="toolbar tabbar toolbar-bottom tabbar-labels">
             <div class="toolbar-inner">
-                <a href="#view-dashboard" class="tab-link tab-link-active">
+                <a href="/home/" class="tab-link"  data-route-tab-id="view-dashboard">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22.241" height="19.461" viewBox="0 0 22.241 19.461">
                         <path id="th-large-solid"
                             d="M12.858,32H21.2a1.043,1.043,0,0,1,1.043,1.043v6.95A1.043,1.043,0,0,1,21.2,41.036h-8.34a1.043,1.043,0,0,1-1.043-1.043v-6.95A1.043,1.043,0,0,1,12.858,32ZM9.383,32H1.043A1.043,1.043,0,0,0,0,33.043v6.95a1.043,1.043,0,0,0,1.043,1.043h8.34a1.043,1.043,0,0,0,1.043-1.043v-6.95A1.043,1.043,0,0,0,9.383,32ZM0,43.468v6.95a1.043,1.043,0,0,0,1.043,1.043h8.34a1.043,1.043,0,0,0,1.043-1.043v-6.95a1.043,1.043,0,0,0-1.043-1.043H1.043A1.043,1.043,0,0,0,0,43.468Zm12.858,7.993H21.2a1.043,1.043,0,0,0,1.043-1.043v-6.95A1.043,1.043,0,0,0,21.2,42.426h-8.34a1.043,1.043,0,0,0-1.043,1.043v6.95A1.043,1.043,0,0,0,12.858,51.461Z"
@@ -11,7 +11,7 @@
                     </svg>
                     <span class="tabbar-label">Dashboard</span>
                 </a>
-                <a href="#view-assets" class="tab-link">
+                <a href="assets/" class="tab-link"  data-route-tab-id="view-assets">
                     <svg xmlns="http://www.w3.org/2000/svg" width="21.23" height="19.461" viewBox="0 0 21.23 19.461">
                         <path id="coins-solid"
                             d="M0,18.562v2.361c0,1.952,4.755,3.538,10.615,3.538S21.23,22.874,21.23,20.923V18.562c-2.283,1.609-6.458,2.361-10.615,2.361S2.283,20.171,0,18.562Zm0-5.8v2.853c0,1.952,4.755,3.538,10.615,3.538S21.23,17.567,21.23,15.615V12.762c-2.283,1.88-6.463,2.853-10.615,2.853S2.283,14.642,0,12.762ZM10.615,5C4.755,5,0,6.979,0,9.423s4.755,4.423,10.615,4.423S21.23,11.867,21.23,9.423,16.476,5,10.615,5Z"
@@ -19,7 +19,7 @@
                     </svg>
                     <span class="tabbar-label">Assets</span>
                 </a>
-                <a href="#view-send" class="tab-link">
+                <a href="send/" class="tab-link"  data-route-tab-id="view-send">
                     <svg xmlns="http://www.w3.org/2000/svg" width="19.662" height="19.659" viewBox="0 0 19.662 19.659">
                         <path id="upload-solid"
                             d="M11.367,14.819H8.3a.919.919,0,0,1-.922-.922V7.445H4.005a.767.767,0,0,1-.541-1.31L9.305.291a.744.744,0,0,1,1.048,0L16.2,6.136a.767.767,0,0,1-.541,1.31H12.289V13.9A.919.919,0,0,1,11.367,14.819Zm8.3-.307v4.3a.919.919,0,0,1-.922.922H.922A.919.919,0,0,1,0,18.813v-4.3a.919.919,0,0,1,.922-.922H6.144V13.9A2.152,2.152,0,0,0,8.3,16.048h3.072A2.152,2.152,0,0,0,13.518,13.9V13.59h5.223A.919.919,0,0,1,19.662,14.512ZM14.9,17.891a.768.768,0,1,0-.768.768A.77.77,0,0,0,14.9,17.891Zm2.458,0a.768.768,0,1,0-.768.768A.77.77,0,0,0,17.358,17.891Z"
@@ -27,7 +27,7 @@
                     </svg>
                     <span class="tabbar-label">Send</span>
                 </a>
-                <a href="#view-receive" class="tab-link">
+                <a href="receive/" class="tab-link"  data-route-tab-id="view-receive">
                     <svg xmlns="http://www.w3.org/2000/svg" width="19.461" height="19.461" viewBox="0 0 19.461 19.461">
                         <path id="download-solid"
                             d="M8.21,0h3.041a.91.91,0,0,1,.912.912V7.3H15.5a.759.759,0,0,1,.536,1.3l-5.781,5.785a.736.736,0,0,1-1.038,0L3.425,8.594a.759.759,0,0,1,.536-1.3H7.3V.912A.91.91,0,0,1,8.21,0ZM19.461,14.292v4.257a.91.91,0,0,1-.912.912H.912A.91.91,0,0,1,0,18.549V14.292a.91.91,0,0,1,.912-.912H6.488l1.862,1.862a1.948,1.948,0,0,0,2.76,0l1.862-1.862h5.576A.91.91,0,0,1,19.461,14.292Zm-4.713,3.345a.76.76,0,1,0-.76.76A.762.762,0,0,0,14.748,17.637Zm2.433,0a.76.76,0,1,0-.76.76A.762.762,0,0,0,17.181,17.637Z"
@@ -38,27 +38,41 @@
             </div>
         </div>
 
-        <div class="page-content">
-            <!-- Your main view/tab, should have "view-main" class. It also has "tab-active" class -->
-            <div id="view-dashboard" class="view tab tab-active">
-            </div>
+        <div class="tabs tabs-routable">
+            <!-- Dashboard view -->
+            <div id="view-dashboard" class="tab"></div>
+            <!-- Assets View -->
+            <div id="view-assets" class="tab"></div>
+            <!-- Send View -->
+            <div id="view-send" class="tab"></div>
+            <!-- Receive View -->
+            <div id="view-receive" class="tab"></div>
         </div>
     </div>
 </template>
 <script>
     export default (props, { $, $on, $f7 }) => {
 
-        $on('pageInit', (e, page) => {
+        /*$on('pageInit', (e, page) => {
             $('#main-view').removeClass('view');
+            $('#main-view').removeClass('view-main');
             $('#main-view').addClass('tabs');
             $('#main-view').addClass('views');
             $f7.views.create("#view-dashboard", { url: "/dashboard/", name: "dashboard" });
+            $f7.views.create("#view-assets", { url: "/assets/", name: "assets" });
+            $f7.views.create("#view-send", { url: "/send/", name: "send" });
+            $f7.views.create("#view-receive", { url: "/receive/", name: "receive" });
+
+            console.debug($f7);
+            $f7.tab.show($("#view-assets"));
         });
         $on('pageAfterOut', (e, page) => {
             $('#main-view').addClass('view');
+            $('#main-view').addClass('view-main');
             $('#main-view').removeClass('tabs');
             $('#main-view').removeClass('views');
-        });
+        });*/
+        
         return $render;
     }
 </script>

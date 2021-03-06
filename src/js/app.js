@@ -48,8 +48,7 @@ var app = new Framework7({
   },
   on: {
     init: function () {
-      this.store.dispatch('setDevice', new ProkeyDevice.Device());
-      console.debug(this.store.getters.device);
+      this.store.state.device = new ProkeyDevice.Device();
       var f7 = this;
       if (f7.device.cordova) {
         // Init cordova APIs (see cordova-app.js)

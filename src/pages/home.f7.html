@@ -53,25 +53,11 @@
 <script>
     export default (props, { $, $on, $f7 }) => {
 
-        /*$on('pageInit', (e, page) => {
-            $('#main-view').removeClass('view');
-            $('#main-view').removeClass('view-main');
-            $('#main-view').addClass('tabs');
-            $('#main-view').addClass('views');
-            $f7.views.create("#view-dashboard", { url: "/dashboard/", name: "dashboard" });
-            $f7.views.create("#view-assets", { url: "/assets/", name: "assets" });
-            $f7.views.create("#view-send", { url: "/send/", name: "send" });
-            $f7.views.create("#view-receive", { url: "/receive/", name: "receive" });
-
-            console.debug($f7);
-            $f7.tab.show($("#view-assets"));
+        $on('pageInit', (e, page) => {
+            console.debug(
+                'test'
+            );
         });
-        $on('pageAfterOut', (e, page) => {
-            $('#main-view').addClass('view');
-            $('#main-view').addClass('view-main');
-            $('#main-view').removeClass('tabs');
-            $('#main-view').removeClass('views');
-        });*/
         
         return $render;
     }

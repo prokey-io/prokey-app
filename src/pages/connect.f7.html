@@ -18,11 +18,8 @@
 
     export default (props, { $store, $f7 }) => {
 
-        console.debug($f7.views);
-
         const connect_click = async () => {
-            console.debug($store.getters.device.value);
-            let res = await $store.getters.device.value.TransportConnect();
+            let res = await $store.state.device.TransportConnect();
             console.debug(res);
             if (res.success === true)
             {

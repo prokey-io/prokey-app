@@ -558,22 +558,45 @@
     </div>
 </template>
 <script>
-    import BitcoinWallet from "@prokey-io/webcore";
-    import CoinInfo from "@prokey-io/webcore/dist/src/coins/CoinInfo";
+    import { BitcoinWallet, EthereumWallet, OmniWallet, CoinInfo } from "@prokey-io/webcore";
 
     export default (props, { $store, $f7 }) => {
-        
-        if ($store.state.wallets.btc == null) {
-            console.debug("add btc wallet");
-            $store.state.wallets.btc = new BitcoinWallet.BitcoinWallet($store.state.device, 'btc');
-        }
-        console.debug($store.state.wallets.btc);
 
-        $store.state.wallets.btc.StartDiscovery((accountInfo) => {
-            console.debug(accountInfo);
-        }, true).then(() => {
-            console.debug('finish discovery');
-        })
+        const LoadWallet = (coin_name, coin_type) => {
+            if ($store.state.wallets[coin_name] == null) {
+                console.debug("add ${coin_name} wallet");
+                switch (coin_type) {
+                    case 0: // bitcoin based
+                        $store.state.wallets[coin_name] = new BitcoinWallet($store.state.device, coin_name);
+                        break;
+
+                    case 1: // Ether based
+                    case 2: // ERC20
+                        $store.state.wallets[coin_name] = new EthereumWallet($store.state.device, coin_name);
+                        break;
+
+                    case 4: // Omni wallet
+                        $store.state.wallets[coin_name] = new OmniWallet($store.state.device, coin_name);
+                        break;
+
+                    default:
+                        console.error('coin type not supported' + cion_type);
+                        break;
+                }
+            }
+            console.debug($store.state.wallets[coin_name]);
+
+            $store.state.wallets[coin_name].StartDiscovery((accountInfo) => {
+                console.debug(accountInfo);
+            }, true).then(() => {
+                console.debug('finish discovery');
+            });
+        }
+
+        LoadWallet($store.state.current_coin.name, $store.state.current_coin.type);
+
+        let coins = CoinInfo.GetAllCoinsName($store.state.device_features.firmwareVersion);
+        console.debug(coins);
 
         return $render;
     }    

@@ -23,8 +23,12 @@
             console.debug(res);
             if (res.success === true)
             {
+                console.debug('device connected');
                 await $store.state.device.Initialize();
-                $store.state.device_features = await $store.state.device.GetFeatures();
+                console.debug('device initialized');
+                let features = await $store.state.device.GetFeatures();
+                features.firmwareVersion = features.major_version + '.' + features.minor_version + '.' + features.patch_version;
+                $store.state.device_features = features;
                 console.debug($store.state.device_features);
                 $f7.views.main.router.navigate('/home/');
             }

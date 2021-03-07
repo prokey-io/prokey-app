@@ -116,8 +116,10 @@
       return true;
     }
 
-    const OnProkeyFailure = (failureType) => {
-      console.error(' Command failed, the failureType is -> ' + failureType);
+    const OnProkeyFailure = async (failureType) => {
+      console.error(' Command failed, the failureType is -> ');
+      console.error(failureType);
+      await $store.state.device.RebootDevice();
       $f7.views.main.router.navigate('/connect/');
     }
 

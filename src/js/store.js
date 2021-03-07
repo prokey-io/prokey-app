@@ -6,7 +6,7 @@ const store = createStore({
     device: null,
     device_features: null,
     wallets: {},
-    current_coin: 'btc',
+    current_coin: { name: 'BTC', type: 0 },
   },
   getters: {
   },

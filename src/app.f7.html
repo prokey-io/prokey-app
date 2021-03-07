@@ -105,6 +105,7 @@
       $store.state.device.AddOnButtonRequestCallBack(OnProkeyButtonRequest);
       $store.state.device.AddOnFailureCallBack(OnProkeyFailure);
       $store.state.device.AddOnDeviceDisconnectCallBack(OnProkeyDisconnect);
+      $store.state.device.AddOnPasspharaseRequestCallBack(OnProkeyPassPhrase);
     });
 
     // **********************************
@@ -117,10 +118,16 @@
 
     const OnProkeyFailure = (failureType) => {
       console.error(' Command failed, the failureType is -> ' + failureType);
+      $f7.views.main.router.navigate('/connect/');
     }
 
     const OnProkeyDisconnect = () => {
       console.debug("Prokey Disconnected");
+      $f7.views.main.router.navigate('/connect/');
+    }
+
+    const OnProkeyPassPhrase = () => {
+      console.debug('Passphrase');
     }
 
     return $render;

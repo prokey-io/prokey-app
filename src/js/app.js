@@ -35,7 +35,7 @@ var app = new Framework7({
   // App routes
   routes: routes,
 
-
+ 
   // Input settings
   input: {
     scrollIntoViewOnFocus: device.cordova && !device.electron,
@@ -65,3 +65,24 @@ setTimeout(function(){
       $$('.splashScreen').hide();      
   },1000);
 },200);
+
+$$(document).on('page:init', function (e) {
+  if ($$('.page-current').data('name') != "home") {
+
+      if (typeof cordova != "undefined" && cordova.platformId == 'android') {
+          StatusBar.overlaysWebView(true);
+          StatusBar.styleDefault();
+      }
+  }
+  $$('.navbar').on('navbar:collapse', function (e) {
+      if (typeof cordova != "undefined" && cordova.platformId == 'android') {
+          StatusBar.styleDefault();
+      }
+
+  });
+  $$('.navbar').on('navbar:expand', function (e) {
+      if (typeof cordova != "undefined" && cordova.platformId == 'android') {
+          StatusBar.styleLightContent();
+      }
+  });
+});

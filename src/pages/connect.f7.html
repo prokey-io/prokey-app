@@ -24,6 +24,8 @@
             if (res.success === true)
             {
                 await $store.state.device.Initialize();
+                $store.state.device_features = await $store.state.device.GetFeatures();
+                console.debug($store.state.device_features);
                 $f7.views.main.router.navigate('/home/');
             }
         }

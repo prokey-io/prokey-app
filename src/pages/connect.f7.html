@@ -14,7 +14,8 @@
 
 <script>
     import connect_image from '../assets/img/connect.png';
-    import my_app from '../js/app.js';
+    import { CoinInfo } from '@prokey-io/webcore'
+
 
     export default (props, { $store, $f7 }) => {
 
@@ -30,6 +31,8 @@
                 features.firmwareVersion = features.major_version + '.' + features.minor_version + '.' + features.patch_version;
                 $store.state.device_features = features;
                 console.debug($store.state.device_features);
+                if ($store.state.coins == null)
+                    $store.state.coins = CoinInfo.GetAllCoinsName($store.state.device_features.firmwareVersion);
                 $f7.views.main.router.navigate('/home/');
             }
         }

@@ -33,75 +33,22 @@
             <div data-pagination='{"el": ".swiper-pagination"}' data-space-between="0" data-slides-per-view="auto"
                 class="swiper-container swiper-init demo-swiper demo-swiper-auto swiper-coins">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide text-align-center">
+                    ${
+                    Object.keys($store.state.wallets).map(coin =>
+                    $store.state.wallets[coin].accounts != null && $store.state.wallets[coin].accounts.map(account =>
+                    account.balance > 0 && $h`<div class="swiper-slide text-align-center">
                         <div class="slide-header">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35">
-                                <g id="Group_3" data-name="Group 3" transform="translate(-45 -135)">
-                                    <circle id="Ellipse_1" data-name="Ellipse 1" cx="17.5" cy="17.5" r="17.5"
-                                        transform="translate(45 135)" fill="#fef2d1" />
-                                    <path id="BTC_alt_1_"
-                                        d="M45.791,10.825a4.856,4.856,0,0,0-1.658-.721,4.522,4.522,0,0,0,1.161-.955,3.631,3.631,0,0,0,.534-1.6,3.348,3.348,0,0,0-1.162-2.922,6.334,6.334,0,0,0-3.578-1.095V.278h-2V3.491H37.558V.278h-2V3.491H31.61V5.572h1.159a1.656,1.656,0,0,1,1.117.3c.239.267.281.407.281.927s0,8.1,0,8.294a.812.812,0,0,1-.206.6c-.168.159-.337.2-.74.2h-1.2L31.61,18.3h3.943v3.2h2V18.3h1.527v3.2h2V18.247c.518-.03,1-.07,1.283-.106a6.667,6.667,0,0,0,3.072-1.068,4.021,4.021,0,0,0,1.508-3.494A3.206,3.206,0,0,0,45.791,10.825ZM37.558,5.757s.637-.056,1.264-.047a6.378,6.378,0,0,1,2,.281,1.733,1.733,0,0,1,1.33,1.6,1.57,1.57,0,0,1-.862,1.527,4.883,4.883,0,0,1-2.07.506c-.73.028-1.667,0-1.667,0V5.757Zm4.487,9.582a6.364,6.364,0,0,1-2.267.543c-.89.066-2.22.038-2.22.038v-4.3s1.274-.065,2.267,0a6.418,6.418,0,0,1,2.2.506,1.774,1.774,0,0,1,.019,3.213Z"
-                                        transform="translate(23.39 141.738)" fill="#ffa100" />
-                                </g>
-                            </svg>
-                            <h6>Account #1</h6>
+                            <img src="https://statics.prokey.io/assets/img/coins/${coin}.png" />
+                            <h6>${coin} Account #${account.accountIndex}</h6>
                         </div>
                         <div class="slide-footer">
-                            <span class="bolderswiper">1.007 BTC</span>
+                            <span class="bolderswiper">${(account.balance / 100000000).toFixed(8)} BTC</span>
                             <span>$7800 USD</span>
                         </div>
-                    </div>
-                    <div class="swiper-slide text-align-center">
-                        <div class="slide-header">
-                            <svg viewBox="0 0 35 35" width="35" height="35">
-                                <g id="Group_4" data-name="Group 4"
-                                    transform="matrix(1, 0, 0, 1, -45.000001, -135.000004)">
-                                    <path id="Path_1" data-name="Path 1"
-                                        d="M17.5,0A17.5,17.5,0,1,1,0,17.5,17.5,17.5,0,0,1,17.5,0Z"
-                                        transform="translate(45 135)" fill="#edeef8"></path>
-                                </g>
-                                <g id="icons8-ethereum" transform="matrix(1, 0, 0, 1, -0.304927, 4.661804)">
-                                    <path id="Path_8" data-name="Path 8" d="M11,12.607,17.75,2,24.5,12.607l-6.75,3.857Z"
-                                        fill="#7322dd">
-                                    </path>
-                                    <path id="Path_9" data-name="Path 9" d="M25,2l6.75,10.607L25,16.464Z"
-                                        transform="translate(-7.25)" fill="#7322dd"></path>
-                                    <path id="Path_10" data-name="Path 10" d="M11,27l6.75,3.857L24.5,27l-6.75,9.161Z"
-                                        transform="translate(0 -12.946)" fill="#7322dd"></path>
-                                    <path id="Path_11" data-name="Path 11"
-                                        d="M17.75,26.2l6.75-3.857L17.75,31.5ZM11,20.893,17.75,18l6.75,2.893L17.75,24.75Z"
-                                        transform="translate(0 -8.286)" fill="#7322dd"></path>
-                                    <path id="Path_12" data-name="Path 12" d="M25,18l6.75,2.893L25,24.75Z"
-                                        transform="translate(-7.25 -8.286)" fill="#7322dd"></path>
-                                </g>
-                            </svg>
-                            <h6>Account #2</h6>
-                        </div>
-                        <div class="slide-footer">
-                            <span class="bolderswiper">1.007 BTC</span>
-                            <span>$7800 ETH</span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide text-align-center">
-                        <div class="slide-header">
-                            <svg viewBox="0 0 35 35" width="35" height="35">
-                                <g id="Group_4" data-name="Group 4"
-                                    transform="matrix(1, 0, 0, 1, -45.000001, -135.000004)">
-                                    <path id="Path_1" data-name="Path 1"
-                                        d="M17.5,0A17.5,17.5,0,1,1,0,17.5,17.5,17.5,0,0,1,17.5,0Z"
-                                        transform="translate(45 135)" fill="#E7F0F5"></path>
-                                </g>
-                                <path id="NMC_alt_1_"
-                                    d="M 24.513 9.358 C 24.037 9.734 23.684 10.237 23.497 10.805 L 21.557 17.762 L 14.959 8.956 C 14.287 8.907 13.614 8.944 12.953 9.065 C 12.159 9.377 11.58 10.055 11.406 10.871 C 11.11 11.982 7.618 24.416 7.618 24.416 C 8.368 24.46 9.121 24.381 9.845 24.187 C 10.557 23.866 11.071 23.236 11.233 22.487 C 11.453 21.735 13.156 15.55 13.156 15.55 L 19.769 24.416 C 20.48 24.45 21.196 24.387 21.89 24.227 C 22.59 23.871 23.098 23.236 23.284 22.487 C 23.494 21.708 27.039 8.938 27.039 8.938 C 27.039 8.938 25.269 8.798 24.513 9.358 Z M 20.338 21.996 L 13.801 13.238 L 14.286 11.309 L 20.918 20.212 Z"
-                                    fill="#176998" style=""></path>
-                            </svg>
-                            <h6>Account #3</h6>
-                        </div>
-                        <div class="slide-footer">
-                            <span class="bolderswiper">1.007 NMC</span>
-                            <span>$7800 USD</span>
-                        </div>
-                    </div>
+                    </div>`
+                    )
+                    )
+                    }                    
                 </div>
             </div>
 
@@ -560,11 +507,11 @@
 <script>
     import { BitcoinWallet, EthereumWallet, OmniWallet, CoinInfo } from "@prokey-io/webcore";
 
-    export default (props, { $store, $f7 }) => {
+    export default (props, { $store, $f7, $update }) => {
 
         const LoadWallet = (coin_name, coin_type) => {
             if ($store.state.wallets[coin_name] == null) {
-                console.debug("add ${coin_name} wallet");
+                console.debug('add ' + coin_name + ' wallet');
                 switch (coin_type) {
                     case 0: // bitcoin based
                         $store.state.wallets[coin_name] = new BitcoinWallet($store.state.device, coin_name);
@@ -580,23 +527,26 @@
                         break;
 
                     default:
-                        console.error('coin type not supported' + cion_type);
+                        console.error('coin type not supported' + coin_type);
                         break;
                 }
             }
-            console.debug($store.state.wallets[coin_name]);
 
+            $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: true };
             $store.state.wallets[coin_name].StartDiscovery((accountInfo) => {
                 console.debug(accountInfo);
+                if ($store.state.wallets[coin_name].accounts == null)
+                    $store.state.wallets[coin_name].accounts = [];
+                $store.state.wallets[coin_name].accounts[accountInfo.accountIndex] = accountInfo;
+                $update();
             }, true).then(() => {
+                $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: false };
                 console.debug('finish discovery');
+                console.debug($store.state.wallets[coin_name]);
             });
         }
 
         LoadWallet($store.state.current_coin.name, $store.state.current_coin.type);
-
-        let coins = CoinInfo.GetAllCoinsName($store.state.device_features.firmwareVersion);
-        console.debug(coins);
 
         return $render;
     }    

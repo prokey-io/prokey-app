@@ -23,6 +23,7 @@
             console.debug(res);
             if (res.success === true)
             {
+                await $store.state.device.Initialize();
                 $f7.views.main.router.navigate('/home/');
             }
         }

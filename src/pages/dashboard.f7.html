@@ -558,7 +558,21 @@
     </div>
 </template>
 <script>
-    export default (props, { $store }) => {
+    import BitcoinWallet from "@prokey-io/webcore";
+
+    export default (props, { $store, $f7 }) => {
+        
+        if ($store.state.wallets.btc == null) {
+            console.debug("add btc wallet");
+            $store.state.wallets.btc = new BitcoinWallet.BitcoinWallet($store.state.device, 'btc');
+        }
+        console.debug($store.state.wallets.btc);
+
+        $store.state.wallets.btc.StartDiscovery((accountInfo) => {
+            console.debug(accountInfo);
+        }, true).then(() => {
+            console.debug('finish discovery');
+        })
 
         return $render;
     }    

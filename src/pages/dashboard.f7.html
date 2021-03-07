@@ -34,9 +34,9 @@
                 class="swiper-container swiper-init demo-swiper demo-swiper-auto swiper-coins">
                 <div class="swiper-wrapper">
                     ${
-                    Object.keys($store.state.wallets).map(coin =>
-                    $store.state.wallets[coin].accounts != null && $store.state.wallets[coin].accounts.map(account =>
-                    account.balance > 0 && $h`<div class="swiper-slide text-align-center">
+                    Object.keys(accounts).map(coin =>
+                    accounts[coin].map(account =>
+                    $h`<div class="swiper-slide text-align-center">
                         <div class="slide-header">
                             <img src="https://statics.prokey.io/assets/img/coins/${coin}.png" />
                             <h6>${coin} Account #${account.accountIndex}</h6>
@@ -509,6 +509,8 @@
 
     export default (props, { $store, $f7, $update }) => {
 
+        let accounts = {};
+
         const LoadWallet = (coin_name, coin_type) => {
             if ($store.state.wallets[coin_name] == null) {
                 console.debug('add ' + coin_name + ' wallet');
@@ -534,10 +536,11 @@
 
             $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: true };
             $store.state.wallets[coin_name].StartDiscovery((accountInfo) => {
-                console.debug(accountInfo);
-                if ($store.state.wallets[coin_name].accounts == null)
-                    $store.state.wallets[coin_name].accounts = [];
-                $store.state.wallets[coin_name].accounts[accountInfo.accountIndex] = accountInfo;
+                console.debug(accountInfo);                
+                if (accounts[coin_name] == null)
+                    accounts[coin_name] = []; 
+                if (accountInfo.accountIndex == 0 || accountInfo.balance > 0)               
+                    accounts[coin_name][accountInfo.accountIndex] = accountInfo;
                 $update();
             }, true).then(() => {
                 $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: false };

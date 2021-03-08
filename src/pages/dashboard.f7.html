@@ -103,8 +103,8 @@
                                         <small>${tx.hash}</small>
                                     </div>
                                     <div class="transactions-details-content"
-                                        onclick="transactionsTokenCopy('p712pet5qwudfgwepd7682sqtpsd2ef98v7');">
-                                        <span><b>${tx.label}:</b> p712pet5qwudfgwepd7682sqtpsd2ef98v7</span>
+                                        onclick="transactionsTokenCopy('${tx.add}');">
+                                        <span><b>To:</b> ${tx.add}</span>
                                         <a href="javascript:void(0)">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="13.5" height="15"
                                                 viewBox="0 0 11.43 13.063">
@@ -572,14 +572,18 @@
                 transactions = txs;
                 for (var tx in transactions) {
                     if (transactions[tx].received) {
-                        transactions[tx].amount = transactions[tx].received[0].value;
-                        transactions[tx].label = 'From';
+                        transactions[tx].amount = 0;
+                        transactions[tx].add = transactions[tx].received[0].address;
+                        transactions[tx].received.map(amount => transactions[tx].amount += amount.value);
                         transactions[tx].color = 'green';
                         transactions[tx].img = 'down';
                     }
                     else if (transactions[tx].sent) {
-                        transactions[tx].amount = transactions[tx].fee + transactions[tx].sent[0].value;
-                        transactions[tx].label = 'To';
+                        transactions[tx].add = transactions[tx].sent[0].address;
+                        transactions[tx].amount = transactions[tx].fee;
+                        transactions[tx].sent.map((amount) => {if (!amount.status.includes("CHANGE")) {
+                            transactions[tx].add = amount.address;
+                            transactions[tx].amount += amount.value;}});
                         transactions[tx].color = 'red';
                         transactions[tx].img = 'up';
                     }
@@ -590,7 +594,7 @@
             });
         }
 
-        const LoadWallet = (coin_name, coin_type) => {
+        const LoadWallet = (coin_name, coin_type, decimals) => {
             if ($store.state.wallets[coin_name] == null) {
                 console.debug('add ' + coin_name + ' wallet');
                 switch (coin_type) {
@@ -626,7 +630,7 @@
                 return;
             }
 
-            $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: true };
+            $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: true, decimals: decimals };
             $store.state.wallets[coin_name].StartDiscovery((accountInfo) => {
                 console.debug(accountInfo);
                 if (accounts[coin_name] == null)
@@ -637,12 +641,12 @@
                     LoadTransactions($store.state.wallets[coin_name], coin_name, 0);
                 $update();
             }, true).then(() => {
-                $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: false };
+                $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: false, decimals: decimals };
                 $store.state.wallets[coin_name].accounts = accounts[coin_name];
                 console.debug('finish discovery');
                 console.debug($store.state.wallets[coin_name]);
             }).catch(() => {
-                $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: false };
+                $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: false, decimals: decimals };
                 console.error('There is an error in account discovery');
             });
         }

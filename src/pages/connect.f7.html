@@ -33,6 +33,7 @@
                 console.debug($store.state.device_features);
                 if ($store.state.coins == null)
                     $store.state.coins = CoinInfo.GetAllCoinsName($store.state.device_features.firmwareVersion);
+                $store.state.current_coin.is_in_discovey = false;
                 $f7.views.main.router.navigate('/home/');
             }
         }

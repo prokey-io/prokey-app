@@ -48,7 +48,7 @@
                     </div>`
                     )
                     )
-                    }                    
+                    }
                 </div>
             </div>
 
@@ -77,20 +77,55 @@
                 </div>
 
                 <div class="transactions-list list accordion-list">
-                    <h3>Today</h3>
                     <ul>
+                        ${transactions.map(tx => $h`
                         <li class="accordion-item">
                             <a href="#" class="item-content item-link">
                                 <div class="item-inner li-inner">
                                     <div class="li-icon">
-                                        <svg viewBox="0 0 35 35" width="35" height="35">
-                                            <rect id="Rectangle_76" data-name="Rectangle 76" width="35" height="35"
-                                                rx="6" fill="#ebfaed"></rect>
-                                            <path id="arrow-up-solid"
-                                                d="M 8.898 19.347 L 7.855 18.304 C 7.413 17.865 7.413 17.15 7.855 16.712 L 16.979 7.583 C 17.418 7.141 18.132 7.141 18.571 7.583 L 27.695 16.707 C 28.136 17.145 28.136 17.86 27.695 18.299 L 26.653 19.342 C 26.205 19.788 25.479 19.779 25.042 19.323 L 19.656 13.669 L 19.656 27.169 C 19.657 27.792 19.152 28.297 18.529 28.296 L 17.024 28.296 C 16.401 28.297 15.895 27.792 15.897 27.169 L 15.897 13.669 L 10.508 19.328 C 10.073 19.788 9.343 19.797 8.898 19.347 Z"
-                                                fill="#3dd089" transform="matrix(-1, 0, 0, -1, 35.549249, 35.547505)">
-                                            </path>
-                                        </svg>
+                                        <${ArrowImage} type="${tx.img}" />
+                                    </div>
+                                    <div class="li-content">
+                                        <div class="li-content-header">
+                                            <span class="color-${tx.color}">${(tx.amount / 100000000).toFixed(8)}
+                                                BTC</span>
+                                            <span class="Amount-bold">5.07 USD</span>
+                                        </div>
+                                        <div class="li-content-time">
+                                            <small>${tx.date}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="accordion-item-content">
+                                <div class="transactions-details">
+                                    <div class="transactions-details-header">
+                                        <small>${tx.hash}</small>
+                                    </div>
+                                    <div class="transactions-details-content"
+                                        onclick="transactionsTokenCopy('p712pet5qwudfgwepd7682sqtpsd2ef98v7');">
+                                        <span><b>${tx.label}:</b> p712pet5qwudfgwepd7682sqtpsd2ef98v7</span>
+                                        <a href="javascript:void(0)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="13.5" height="15"
+                                                viewBox="0 0 11.43 13.063">
+                                                <path id="copy-regular"
+                                                    d="M11.072,1.682,9.748.359A1.225,1.225,0,0,0,8.882,0H4.491A1.225,1.225,0,0,0,3.266,1.225V2.449H1.225A1.225,1.225,0,0,0,0,3.674v8.165a1.225,1.225,0,0,0,1.225,1.225H6.94a1.225,1.225,0,0,0,1.225-1.225V10.614h2.041A1.225,1.225,0,0,0,11.43,9.389V2.548a1.225,1.225,0,0,0-.359-.866ZM6.787,11.839H1.378a.153.153,0,0,1-.153-.153V3.827a.153.153,0,0,1,.153-.153H3.266V9.389a1.225,1.225,0,0,0,1.225,1.225H6.94v1.072A.153.153,0,0,1,6.787,11.839Zm3.266-2.449H4.644a.153.153,0,0,1-.153-.153V1.378a.153.153,0,0,1,.153-.153h2.7V3.47a.612.612,0,0,0,.612.612h2.245V9.236a.153.153,0,0,1-.153.153Zm.153-6.532H8.573V1.225h.246a.153.153,0,0,1,.108.045L10.161,2.5a.153.153,0,0,1,.045.108Z"
+                                                    opacity="0.5" />
+                                            </svg>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        `
+                        )}
+                        <h3>Today</h3>
+                        <li class="accordion-item">
+                            <a href="#" class="item-content item-link">
+                                <div class="item-inner li-inner">
+                                    <div class="li-icon">
+                                        <${ArrowImage} type="up" />
                                     </div>
                                     <div class="li-content">
                                         <div class="li-content-header">
@@ -129,14 +164,7 @@
                             <a href="#" class="item-content item-link">
                                 <div class="item-inner li-inner">
                                     <div class="li-icon">
-                                        <svg viewBox="0 0 35 35" width="35" height="35">
-                                            <rect id="Rectangle_76" data-name="Rectangle 76" width="35" height="35"
-                                                rx="6" fill="#ebfaed"></rect>
-                                            <path id="arrow-up-solid"
-                                                d="M 8.898 19.347 L 7.855 18.304 C 7.413 17.865 7.413 17.15 7.855 16.712 L 16.979 7.583 C 17.418 7.141 18.132 7.141 18.571 7.583 L 27.695 16.707 C 28.136 17.145 28.136 17.86 27.695 18.299 L 26.653 19.342 C 26.205 19.788 25.479 19.779 25.042 19.323 L 19.656 13.669 L 19.656 27.169 C 19.657 27.792 19.152 28.297 18.529 28.296 L 17.024 28.296 C 16.401 28.297 15.895 27.792 15.897 27.169 L 15.897 13.669 L 10.508 19.328 C 10.073 19.788 9.343 19.797 8.898 19.347 Z"
-                                                fill="#3dd089" transform="matrix(-1, 0, 0, -1, 35.549249, 35.547505)">
-                                            </path>
-                                        </svg>
+                                        <${ArrowImage} type="down" />
                                     </div>
                                     <div class="li-content">
                                         <div class="li-content-header">
@@ -506,10 +534,57 @@
 </template>
 <script>
     import { BitcoinWallet, EthereumWallet, OmniWallet, CoinInfo } from "@prokey-io/webcore";
+    import UpArrow from "../assets/img/up-arrow.svg";
+    import DownArrow from "../assets/img/down-arrow.svg"
+
+    // create Arrow component
+    const ArrowImage = (props, { $h }) => {
+        if (props.type === "up")
+            return () => $h`<svg viewBox="0 0 35 35" width="35" height="35">
+    <rect id="Rectangle_135" data-name="Rectangle 135" width="35" height="35"
+        rx="6" fill="#faebeb"></rect>
+    <path id="arrow-up-solid"
+        d="M 8.612 19.282 L 7.569 18.239 C 7.127 17.8 7.127 17.086 7.569 16.647 L 16.693 7.518 C 17.132 7.076 17.846 7.076 18.285 7.518 L 27.409 16.642 C 27.851 17.081 27.851 17.795 27.409 18.234 L 26.367 19.277 C 25.919 19.723 25.193 19.714 24.756 19.258 L 19.37 13.604 L 19.37 27.104 C 19.372 27.727 18.866 28.233 18.243 28.231 L 16.738 28.231 C 16.115 28.233 15.609 27.727 15.611 27.104 L 15.611 13.604 L 10.222 19.263 C 9.787 19.723 9.058 19.732 8.612 19.282 Z"
+        fill="#f33c6e"></path>
+</svg>`;
+        else
+            return () => $h`<svg viewBox="0 0 35 35" width="35" height="35">
+    <rect id="Rectangle_76" data-name="Rectangle 76" width="35" height="35"
+        rx="6" fill="#ebfaed"></rect>
+    <path id="arrow-up-solid"
+        d="M 8.898 19.347 L 7.855 18.304 C 7.413 17.865 7.413 17.15 7.855 16.712 L 16.979 7.583 C 17.418 7.141 18.132 7.141 18.571 7.583 L 27.695 16.707 C 28.136 17.145 28.136 17.86 27.695 18.299 L 26.653 19.342 C 26.205 19.788 25.479 19.779 25.042 19.323 L 19.656 13.669 L 19.656 27.169 C 19.657 27.792 19.152 28.297 18.529 28.296 L 17.024 28.296 C 16.401 28.297 15.895 27.792 15.897 27.169 L 15.897 13.669 L 10.508 19.328 C 10.073 19.788 9.343 19.797 8.898 19.347 Z"
+        fill="#3dd089" transform="matrix(-1, 0, 0, -1, 35.549249, 35.547505)">
+    </path>
+</svg>`;
+    }
 
     export default (props, { $store, $f7, $update }) => {
 
         let accounts = {};
+        let transactions = [];
+
+        const LoadTransactions = (wallet, coin_name, account_number) => {
+            transactions = [];
+            wallet.GetTransactionViewList(account_number, 0, 100).then((txs) => {
+                transactions = txs;
+                for (var tx in transactions) {
+                    if (transactions[tx].received) {
+                        transactions[tx].amount = transactions[tx].received[0].value;
+                        transactions[tx].label = 'From';
+                        transactions[tx].color = 'green';
+                        transactions[tx].img = 'down';
+                    }
+                    else if (transactions[tx].sent) {
+                        transactions[tx].amount = transactions[tx].fee + transactions[tx].sent[0].value;
+                        transactions[tx].label = 'To';
+                        transactions[tx].color = 'red';
+                        transactions[tx].img = 'up';
+                    }
+                }
+                console.debug(transactions);
+                $update();
+            });
+        }
 
         const LoadWallet = (coin_name, coin_type) => {
             if ($store.state.wallets[coin_name] == null) {
@@ -536,11 +611,13 @@
 
             $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: true };
             $store.state.wallets[coin_name].StartDiscovery((accountInfo) => {
-                console.debug(accountInfo);                
+                console.debug(accountInfo);
                 if (accounts[coin_name] == null)
-                    accounts[coin_name] = []; 
-                if (accountInfo.accountIndex == 0 || accountInfo.balance > 0)               
+                    accounts[coin_name] = [];
+                if (accountInfo.accountIndex == 0 || accountInfo.balance > 0)
                     accounts[coin_name][accountInfo.accountIndex] = accountInfo;
+                if (accountInfo.accountIndex == 0)
+                    LoadTransactions($store.state.wallets[coin_name], coin_name, 0);
                 $update();
             }, true).then(() => {
                 $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: false };

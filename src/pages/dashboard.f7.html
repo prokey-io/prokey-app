@@ -556,12 +556,17 @@
 </svg>`;
     }
 
-    export default (props, { $store, $f7, $update }) => {
+    export default (props, { $store, $f7, $update, $on }) => {
 
         let accounts = {};
         let transactions = [];
 
         const LoadTransactions = (wallet, coin_name, account_number) => {
+            if ($store.state.wallets[coin_name].transactions != null) {
+                transactions = $store.state.wallets[coin_name].transactions;
+                return;
+            }
+
             transactions = [];
             wallet.GetTransactionViewList(account_number, 0, 100).then((txs) => {
                 transactions = txs;
@@ -579,6 +584,7 @@
                         transactions[tx].img = 'up';
                     }
                 }
+                $store.state.wallets[coin_name].transactions = transactions;
                 console.debug(transactions);
                 $update();
             });
@@ -607,6 +613,13 @@
                 }
             }
 
+            if ($store.state.wallets[coin_name].accounts != null) {
+                accounts[coin_name] = $store.state.wallets[coin_name].accounts;
+                LoadTransactions($store.state.wallets[coin_name], coin_name, 0);
+                $update();
+                return;
+            }
+
             $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: true };
             $store.state.wallets[coin_name].StartDiscovery((accountInfo) => {
                 console.debug(accountInfo);
@@ -619,6 +632,7 @@
                 $update();
             }, true).then(() => {
                 $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: false };
+                $store.state.wallets[coin_name].accounts = accounts[coin_name];
                 console.debug('finish discovery');
                 console.debug($store.state.wallets[coin_name]);
             });

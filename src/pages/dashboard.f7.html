@@ -620,6 +620,12 @@
                 return;
             }
 
+            if ($store.state.current_coin.is_in_discovey)
+            {
+                console.log("another account discovery already in place");
+                return;
+            }
+
             $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: true };
             $store.state.wallets[coin_name].StartDiscovery((accountInfo) => {
                 console.debug(accountInfo);
@@ -635,6 +641,9 @@
                 $store.state.wallets[coin_name].accounts = accounts[coin_name];
                 console.debug('finish discovery');
                 console.debug($store.state.wallets[coin_name]);
+            }).catch(() => {
+                $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: false };
+                console.error('There is an error in account discovery');
             });
         }
 

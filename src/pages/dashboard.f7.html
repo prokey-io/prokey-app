@@ -227,6 +227,8 @@
 
                     default:
                         console.error('coin type not supported' + coin_type);
+                        $f7.preloader.hide();
+                        return;
                         break;
                 }
             }
@@ -268,6 +270,7 @@
             }).catch(() => {
                 $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: false, decimals: decimals };
                 loading = false;
+                $f7.preloader.hide();
                 $update();
                 console.error('There is an error in account discovery');
             });

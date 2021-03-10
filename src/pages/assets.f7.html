@@ -1,12 +1,86 @@
 <template>
     <div class="page" data-name="assets">
+        <!-- Top Navbar -->
+        <div class="navbar navbar-large">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner">
+                <div class="left">
+                    <a class="link back">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="8.693" height="14.324"
+                            viewBox="0 0 8.693 14.324">
+                            <path id="chevron-up-solid"
+                                d="M13.376,123.726l6.375,6.375a.787.787,0,0,1,0,1.113l-.744.744a.787.787,0,0,1-1.112,0l-5.076-5.052-5.076,5.052a.787.787,0,0,1-1.112,0l-.744-.743a.787.787,0,0,1,0-1.113l6.375-6.375a.787.787,0,0,1,1.113,0Z"
+                                transform="translate(-123.495 19.981) rotate(-90)" />
+                        </svg>
+                        <span class="if-not-md">Back</span>
+                    </a>
+                </div>
+                <div class="title-page">Assets</div>
+                <div class="right">
+                    <a href="#" class="link icon-only panel-open" data-panel="right">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16.37" height="14.324"
+                            viewBox="0 0 16.37 14.324">
+                            <path id="bars-solid"
+                                d="M.585,62.631h15.2a.585.585,0,0,0,.585-.585V60.585A.585.585,0,0,0,15.786,60H.585A.585.585,0,0,0,0,60.585v1.462A.585.585,0,0,0,.585,62.631Zm0,5.847h15.2a.585.585,0,0,0,.585-.585V66.431a.585.585,0,0,0-.585-.585H.585A.585.585,0,0,0,0,66.431v1.462A.585.585,0,0,0,.585,68.478Zm0,5.847h15.2a.585.585,0,0,0,.585-.585V72.278a.585.585,0,0,0-.585-.585H.585A.585.585,0,0,0,0,72.278V73.74A.585.585,0,0,0,.585,74.324Z"
+                                transform="translate(0 -60)" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <div class="page-content">
-            Hi
+            <div class="ex-inner">
+                <div class="ex-inner-search item-input">
+                    <form action="" method="POST" class="search searchcoins">
+                        <div class="search-div item-input-wrap">
+                            <div class="search-input ">
+                                <input type="search" value="" placeholder="Search By Assest Name Or Symbol..." />
+                                <span class="input-clear-button"></span>
+                            </div>
+                            <div class="search-icon">
+                                <button class="col button button-raised" type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                        viewBox="0 0 12.49 12.492">
+                                        <path id="search-solid"
+                                            d="M12.32,10.8,9.888,8.368A.585.585,0,0,0,9.473,8.2h-.4a5.072,5.072,0,1,0-.878.878v.4a.585.585,0,0,0,.171.415L10.8,12.32a.583.583,0,0,0,.827,0l.69-.69A.588.588,0,0,0,12.32,10.8ZM5.074,8.2A3.123,3.123,0,1,1,8.2,5.074,3.121,3.121,0,0,1,5.074,8.2Z"
+                                            fill="#c8c8c8" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="coins-list list">
+                    <ul class="coins-list-grid">
+                        ${coins.map(coin => $h`<li>
+                            <a @click=${() => coin_click(coin.Shortcut, coin.Type, coin.Decimals)} class="coin item-link">
+                                <div class="coin-icon">
+                                    <img src="https://statics.prokey.io/assets/img/coins/${coin.Shortcut}.png" />
+                                </div>
+                                <div class="coin-content">
+                                    <span class="coin-title">${coin.Name}</span>
+                                    <small>${coin.Shortcut}</small>
+                                </div>
+                            </a>
+                        </li>
+`)}
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 <script>
-    export default (props, { $store }) => {
+    export default (props, { $store, $f7 }) => {
+        let coins = $store.state.coins.slice(0, 100);
+
+        const coin_click = (name, type, decimals) => {
+            $store.state.current_coin.name = name;
+            $store.state.current_coin.type = type;
+            $store.state.current_coin.decimals = decimals;
+            $f7.views.main.router.navigate('/home/');
+        }
 
         return $render;
     }    

@@ -1,5 +1,72 @@
 <template>
     <div class="page" data-name="send">
+        <!-- Top Navbar -->
+        <div class="navbar navbar-large">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner">
+                <div class="left">
+                    <a class="link back">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="8.693" height="14.324"
+                            viewBox="0 0 8.693 14.324">
+                            <path id="chevron-up-solid"
+                                d="M13.376,123.726l6.375,6.375a.787.787,0,0,1,0,1.113l-.744.744a.787.787,0,0,1-1.112,0l-5.076-5.052-5.076,5.052a.787.787,0,0,1-1.112,0l-.744-.743a.787.787,0,0,1,0-1.113l6.375-6.375a.787.787,0,0,1,1.113,0Z"
+                                transform="translate(-123.495 19.981) rotate(-90)" />
+                        </svg>
+                        <span class="if-not-md">Back</span>
+                    </a>
+                </div>
+                <div class="title-page">Send</div>
+                <div class="right">
+                    <a href="#" class="link icon-only panel-open" data-panel="right">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16.37" height="14.324"
+                            viewBox="0 0 16.37 14.324">
+                            <path id="bars-solid"
+                                d="M.585,62.631h15.2a.585.585,0,0,0,.585-.585V60.585A.585.585,0,0,0,15.786,60H.585A.585.585,0,0,0,0,60.585v1.462A.585.585,0,0,0,.585,62.631Zm0,5.847h15.2a.585.585,0,0,0,.585-.585V66.431a.585.585,0,0,0-.585-.585H.585A.585.585,0,0,0,0,66.431v1.462A.585.585,0,0,0,.585,68.478Zm0,5.847h15.2a.585.585,0,0,0,.585-.585V72.278a.585.585,0,0,0-.585-.585H.585A.585.585,0,0,0,0,72.278V73.74A.585.585,0,0,0,.585,74.324Z"
+                                transform="translate(0 -60)" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div class="ex-inner">
+                <form class="coin-send text-center">
+                    <div class="coin-send-header">
+                        <div class="coin-send-header-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35">
+                                <g id="Group_3" data-name="Group 3" transform="translate(0.293)">
+                                    <circle id="Ellipse_1" data-name="Ellipse 1" cx="17.5" cy="17.5" r="17.5"
+                                        transform="translate(-0.293)" fill="#fef2d1" />
+                                    <path id="BTC_alt_1_"
+                                        d="M45.791,10.825a4.856,4.856,0,0,0-1.658-.721,4.522,4.522,0,0,0,1.161-.955,3.631,3.631,0,0,0,.534-1.6,3.348,3.348,0,0,0-1.162-2.922,6.334,6.334,0,0,0-3.578-1.095V.278h-2V3.491H37.558V.278h-2V3.491H31.61V5.572h1.159a1.656,1.656,0,0,1,1.117.3c.239.267.281.407.281.927s0,8.1,0,8.294a.812.812,0,0,1-.206.6c-.168.159-.337.2-.74.2h-1.2L31.61,18.3h3.943v3.2h2V18.3h1.527v3.2h2V18.247c.518-.03,1-.07,1.283-.106a6.667,6.667,0,0,0,3.072-1.068,4.021,4.021,0,0,0,1.508-3.494A3.206,3.206,0,0,0,45.791,10.825ZM37.558,5.757s.637-.056,1.264-.047a6.378,6.378,0,0,1,2,.281,1.733,1.733,0,0,1,1.33,1.6,1.57,1.57,0,0,1-.862,1.527,4.883,4.883,0,0,1-2.07.506c-.73.028-1.667,0-1.667,0V5.757Zm4.487,9.582a6.364,6.364,0,0,1-2.267.543c-.89.066-2.22.038-2.22.038v-4.3s1.274-.065,2.267,0a6.418,6.418,0,0,1,2.2.506,1.774,1.774,0,0,1,.019,3.213Z"
+                                        transform="translate(-21.61 6.738)" fill="#ffa100" />
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="coin-send-header-content">
+                            Bitcoin
+                        </div>
+                    </div>
+                    <div class="coin-send-footer">
+                        <span>4.7845 BTC Available</span>
+                    </div>
+                    <div class="coin-change text-center change-details" data-from="BTC" data-to="$"
+                        data-changeRate="19420">
+                        <input type="number" name="input_value" id="input_value" placeholder="0.00" />
+                        <span>$ 0</span>
+                        <a href="javascript:void(0)" class="coin-change-icon item-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17.031" height="27" viewBox="0 0 17.031 27">
+                                <path id="Combined_Shape" data-name="Combined Shape"
+                                    d="M12.21,26.738l-3.386-3.6a.937.937,0,0,1-.1-1.268.82.82,0,0,1,1.2-.11c.034.037.069.055.087.092l1.962,2.075V12.594a1.756,1.756,0,0,0-1.7-1.8.9.9,0,0,1,0-1.8,3.512,3.512,0,0,1,3.4,3.6V23.927l1.962-2.075a.82.82,0,0,1,1.2.11.958.958,0,0,1,0,1.176l-3.421,3.6a.816.816,0,0,1-1.2,0ZM3.454,14.388V3.054L1.492,5.13a.82.82,0,0,1-1.2.092A.939.939,0,0,1,.207,3.954c.035-.036.052-.073.087-.092L3.7.262a.816.816,0,0,1,1.2,0L8.3,3.844a.92.92,0,0,1-.087,1.267.81.81,0,0,1-1.111,0L5.138,3.036V14.388h.017a1.756,1.756,0,0,0,1.7,1.8.9.9,0,0,1,0,1.8A3.511,3.511,0,0,1,3.454,14.388Z"
+                                    fill="#347af0" />
+                            </svg>
+                        </a>
+                    </div>
+                    <a href="/transfer/" class="col button button-large button-fill">Send</a>
+                </form>
+            </div>
+        </div>
     </div>
 </template>
 <script>

@@ -42,7 +42,7 @@
                             <h6>${coin} Account #${account.accountIndex}</h6>
                         </div>
                         <div class="slide-footer">
-                            <span class="bolderswiper">${(account.balance / 100000000).toFixed(8)} BTC</span>
+                            <span class="bolderswiper">${account.balance.ToCoin(decimals)} ${coin_symbol}</span>
                             <span><i class="f7-icons"></i>$7800 USD</span>
                         </div>
                     </div>`
@@ -95,8 +95,7 @@
                                     </div>
                                     <div class="li-content">
                                         <div class="li-content-header">
-                                            <span class="color-${tx.color}">${(tx.amount / 100000000).toFixed(8)}
-                                                BTC</span>
+                                            <span class="color-${tx.color}">${tx.amount.ToCoin(decimals)} ${coin_symbol}</span>
                                             <span class="Amount-bold">5.07 USD</span>
                                         </div>
                                         <div class="li-content-time">
@@ -571,6 +570,9 @@
         let transactions = [];
         let loading = true;
         let transactions_loading = true;
+        let decimals = $store.state.current_coin.decimals;
+        let coin_symbol = $store.state.current_coin.name;
+        $f7.preloader.show();
 
         // Load the latest transactions
         const LoadTransactions = (wallet, coin_name, account_number) => {
@@ -587,7 +589,9 @@
                     if (transactions[tx].received) {
                         transactions[tx].amount = 0;
                         transactions[tx].add = transactions[tx].received[0].address;
-                        transactions[tx].received.map(amount => transactions[tx].amount += amount.value);
+                        transactions[tx].received.map(amount => {if (!amount.status.includes("CHANGE")) {
+                            transactions[tx].add = amount.address;
+                            transactions[tx].amount += amount.value;}});
                         transactions[tx].color = 'green';
                         transactions[tx].img = 'down';
                     }
@@ -636,6 +640,7 @@
                 accounts[coin_name] = $store.state.wallets[coin_name].accounts;
                 LoadTransactions($store.state.wallets[coin_name], coin_name, 0);
                 loading = false;
+                $f7.preloader.hide();
                 $update();
                 return;
             }
@@ -656,6 +661,7 @@
                     accounts[coin_name][accountInfo.accountIndex] = accountInfo;
                 if (accountInfo.accountIndex == 0)
                     LoadTransactions($store.state.wallets[coin_name], coin_name, 0);
+                $f7.preloader.hide();
                 $update();
             }, true).then(() => {
                 $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: false, decimals: decimals };

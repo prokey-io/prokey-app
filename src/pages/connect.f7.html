@@ -19,6 +19,8 @@
 
     export default (props, { $store, $f7 }) => {
 
+        $f7.preloader.hide();
+
         const connect_click = async () => {
             let res = await $store.state.device.TransportConnect();
             console.debug(res);

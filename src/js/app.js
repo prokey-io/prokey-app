@@ -58,6 +58,9 @@ var app = new Framework7({
   },
 });
 
+// Number.ToCoin(decimals)
+Number.prototype.ToCoin = function(decimals) {return (this / Math.pow(10, decimals)).toFixed(decimals);}
+
 // splashscreen
 setTimeout(function(){
   $$('.splashScreen').addClass('animate__animated animate__fadeOut');

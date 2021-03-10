@@ -43,12 +43,19 @@
                         </div>
                         <div class="slide-footer">
                             <span class="bolderswiper">${(account.balance / 100000000).toFixed(8)} BTC</span>
-                            <span>$7800 USD</span>
+                            <span><i class="f7-icons"></i>$7800 USD</span>
                         </div>
                     </div>`
                     )
                     )
                     }
+                    ${loading && $h`<div class="swiper-slide text-align-center">
+                        <div class="slide-header">                            
+                            <h1>Loading</h1>
+                        </div>
+                        <div class="slide-footer">
+                        </div>
+                    </div>`}
                 </div>
             </div>
 
@@ -78,6 +85,7 @@
 
                 <div class="transactions-list list accordion-list">
                     <ul>
+                        ${transactions_loading && $h`<li>Loading</li>`}
                         ${transactions.map(tx => $h`
                         <li class="accordion-item">
                             <a href="#" class="item-content item-link">
@@ -535,7 +543,7 @@
 <script>
     import { BitcoinWallet, EthereumWallet, OmniWallet, CoinInfo } from "@prokey-io/webcore";
 
-    // create Arrow component
+    // Arrow component
     const ArrowImage = (props, { $h }) => {
         if (props.type === "up")
             return () => $h`<svg viewBox="0 0 35 35" width="35" height="35">
@@ -556,14 +564,19 @@
 </svg>`;
     }
 
+    // Dashboard component
     export default (props, { $store, $f7, $update, $on }) => {
 
         let accounts = {};
         let transactions = [];
+        let loading = true;
+        let transactions_loading = true;
 
+        // Load the latest transactions
         const LoadTransactions = (wallet, coin_name, account_number) => {
             if ($store.state.wallets[coin_name].transactions != null) {
                 transactions = $store.state.wallets[coin_name].transactions;
+                transactions_loading = false;
                 return;
             }
 
@@ -590,10 +603,12 @@
                 }
                 $store.state.wallets[coin_name].transactions = transactions;
                 console.debug(transactions);
+                transactions_loading = false;
                 $update();
             });
         }
 
+        // Load a wallet
         const LoadWallet = (coin_name, coin_type, decimals) => {
             if ($store.state.wallets[coin_name] == null) {
                 console.debug('add ' + coin_name + ' wallet');
@@ -620,6 +635,7 @@
             if ($store.state.wallets[coin_name].accounts != null) {
                 accounts[coin_name] = $store.state.wallets[coin_name].accounts;
                 LoadTransactions($store.state.wallets[coin_name], coin_name, 0);
+                loading = false;
                 $update();
                 return;
             }
@@ -630,6 +646,7 @@
                 return;
             }
 
+            // start account discovery
             $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: true, decimals: decimals };
             $store.state.wallets[coin_name].StartDiscovery((accountInfo) => {
                 console.debug(accountInfo);
@@ -643,10 +660,14 @@
             }, true).then(() => {
                 $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: false, decimals: decimals };
                 $store.state.wallets[coin_name].accounts = accounts[coin_name];
+                loading = false;
+                $update();
                 console.debug('finish discovery');
                 console.debug($store.state.wallets[coin_name]);
             }).catch(() => {
                 $store.state.current_coin = { name: coin_name, type: coin_type, is_in_discovey: false, decimals: decimals };
+                loading = false;
+                $update();
                 console.error('There is an error in account discovery');
             });
         }

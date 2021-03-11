@@ -91,16 +91,12 @@
                         <li data-name="${coin.Shortcut}" data-type="${coin.Type}" data-decimals="${coin.Decimals}">
                             <a class="coin item-link">
                                 <div class="coin-icon">
-                                    ${coin.Type != 2 ? `<object
-                                        data="https://statics.prokey.io/assets/img/coins/${coin.Shortcut}.png"
-                                        type="image/png">
-                                        <img src="https://statics.prokey.io/assets/img/coins/tk.png" />
-                                    </object>
-                                    ` : `<object
-                                        data="https://statics.prokey.io/assets/img/coins/${coin.ContractAddress}.png"
-                                        type="image/png">
-                                        <img src="https://statics.prokey.io/assets/img/coins/tk.png" />
-                                    </object>
+                                    ${coin.Type != 2 ? `
+                                        <img class="coin-image" src="https://statics.prokey.io/assets/img/coins/${coin.Shortcut}.png"
+                                        onerror="this.onerror=null;this.src='https://statics.prokey.io/assets/img/coins/tk.png';"/>
+                                    ` : `
+                                        <img class="coin-image" src="https://statics.prokey.io/assets/img/coins/${coin.ContractAddress}.png"
+                                        onerror="this.onerror=null;this.src='https://statics.prokey.io/assets/img/coins/tk.png';"/>
                                     `}
                                 </div>
                                 <div class="coin-content">
@@ -111,7 +107,8 @@
                         </li>`;
                 },
                 // Item height
-                height: 6,
+                height: 17,
+                cols: 2,
             });
 
             $$('.virtual-list').on('click', 'li', (e) => {

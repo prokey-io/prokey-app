@@ -54,9 +54,21 @@
                 <div class="coins-list list">
                     <ul class="coins-list-grid">
                         ${coins.map(coin => $h`<li>
-                            <a @click=${() => coin_click(coin.Shortcut, coin.Type, coin.Decimals)} class="coin item-link">
+                            <a @click=${()=> coin_click(coin.Shortcut, coin.Type, coin.Decimals)} class="coin
+                                item-link">
                                 <div class="coin-icon">
-                                    <img src="https://statics.prokey.io/assets/img/coins/${coin.Shortcut}.png" />
+                                    ${coin.Type != 2 && $h`<object
+                                        data="https://statics.prokey.io/assets/img/coins/${coin.Shortcut}.png"
+                                        type="image/png">
+                                        <img src="https://statics.prokey.io/assets/img/coins/tk.png" />
+                                    </object>
+                                    `}
+                                    ${coin.Type === 2 && $h`<object
+                                        data="https://statics.prokey.io/assets/img/coins/${coin.ContractAddress}.png"
+                                        type="image/png">
+                                        <img src="https://statics.prokey.io/assets/img/coins/tk.png" />
+                                    </object>
+                                    `}
                                 </div>
                                 <div class="coin-content">
                                     <span class="coin-title">${coin.Name}</span>
@@ -64,7 +76,7 @@
                                 </div>
                             </a>
                         </li>
-`)}
+                        `)}
                     </ul>
                 </div>
             </div>

@@ -51,19 +51,52 @@
                         </div>
                     </form>
                 </div>
-                <div class="coins-list list">
-                    <ul class="coins-list-grid">
-                        ${coins.map(coin => $h`<li>
-                            <a @click=${()=> coin_click(coin.Shortcut, coin.Type, coin.Decimals)} class="coin
-                                item-link">
+                <div class="list virtual-list coins-list">
+                    <ul class="coins-list-grid"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    import $$ from 'dom7';
+
+    export default (props, { $store, $f7, $el, $on }) => {
+
+        const coin_click = (name, type, decimals) => {
+            $store.state.current_coin.name = name;
+            $store.state.current_coin.type = +type;
+            $store.state.current_coin.decimals = +decimals;
+            $f7.views.main.router.navigate('/home/');
+        }
+
+        $on('tabInit', (newTabEl, tabRoute) => {
+            const virtualList = $f7.virtualList.create({
+                // List Element
+                el: $el.value.find('.virtual-list'),
+                ul: $el.value.find('.coins-list-grid'),
+                // Pass array with items
+                items: $store.state.coins,
+                // Custom search function for searchbar
+                /*searchAll: function (query, items) {
+                    var found = [];
+                    for (var i = 0; i < items.length; i++) {
+                        if (items[i].title.toLowerCase().indexOf(query.toLowerCase()) >= 0 || query.trim() === '') found.push(i);
+                    }
+                    return found; //return array with mathced indexes
+                },*/
+                // List item render
+                renderItem(coin) {
+                    return `
+                        <li data-name="${coin.Shortcut}" data-type="${coin.Type}" data-decimals="${coin.Decimals}">
+                            <a class="coin item-link">
                                 <div class="coin-icon">
-                                    ${coin.Type != 2 && $h`<object
+                                    ${coin.Type != 2 ? `<object
                                         data="https://statics.prokey.io/assets/img/coins/${coin.Shortcut}.png"
                                         type="image/png">
                                         <img src="https://statics.prokey.io/assets/img/coins/tk.png" />
                                     </object>
-                                    `}
-                                    ${coin.Type === 2 && $h`<object
+                                    ` : `<object
                                         data="https://statics.prokey.io/assets/img/coins/${coin.ContractAddress}.png"
                                         type="image/png">
                                         <img src="https://statics.prokey.io/assets/img/coins/tk.png" />
@@ -75,24 +108,17 @@
                                     <small>${coin.Shortcut}</small>
                                 </div>
                             </a>
-                        </li>
-                        `)}
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
-<script>
-    export default (props, { $store, $f7 }) => {
-        let coins = $store.state.coins.slice(0, 100);
+                        </li>`;
+                },
+                // Item height
+                height: 6,
+            });
 
-        const coin_click = (name, type, decimals) => {
-            $store.state.current_coin.name = name;
-            $store.state.current_coin.type = type;
-            $store.state.current_coin.decimals = decimals;
-            $f7.views.main.router.navigate('/home/');
-        }
+            $$('.virtual-list').on('click', 'li', (e) => {
+                coin_click($$(e.target).closest('li').attr('data-name'), $$(e.target).closest('li').attr('data-type'), $$(e.target).closest('li').attr('data-decimals'));
+            });
+
+        });
 
         return $render;
     }    

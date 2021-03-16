@@ -218,7 +218,7 @@
 
                     case 1: // Ether based
                     case 2: // ERC20
-                        $store.state.wallets[coin_name] = new EthereumWallet($store.state.device, coin_name);
+                        $store.state.wallets[coin_name] = new EthereumWallet($store.state.device, coin_name, coin_type == 2);
                         break;
 
                     case 4: // Omni wallet
